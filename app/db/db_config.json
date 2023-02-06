@@ -1,0 +1,35 @@
+{
+  "es": {
+    "url": "",
+    "user": "",
+    "password": "",
+    "version": ""
+  },
+  "mysql": {
+    "host": "192.168.64.244",
+    "port": 3306,
+    "user": "root",
+    "password": "123456",
+    "db": "mydb"
+  },
+  "redis": {
+    "host": "192.168.64.244",
+    "port": 6379,
+    "password": "",
+    "db": ""
+  },
+  "ftp": {
+    "host": "",
+    "port": "",
+    "user": "",
+    "password": "",
+    "path": ""
+  },
+  "mongo": {
+    "host": "",
+    "port": 27017,
+    "user": "",
+    "password": "",
+    "db": ""
+  }
+}

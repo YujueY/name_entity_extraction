@@ -1,0 +1,12 @@
+SERVER:
+  host: 0.0.0.0
+  port: 16224
+
+
+DEVICES: "cpu"
+
+MODEL:
+  modelpath_NER: models/bert-base_span_莱芜烟草询价+_v2
+
+SPLIT:
+  service: http://10.1.0.135:15336/api/v1/ocr/laiwu_page_split

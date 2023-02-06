@@ -1,0 +1,19 @@
+version: '3'
+services:
+  laiwu_xunjia:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    image: registry-deqing.ii-ai.tech/nlp/laiwu_xunjia:v230111
+    container_name: laiwu_xunjia
+    volumes:
+      - /etc/timezone:/etc/timezone
+      - /etc/localtime:/etc/localtime
+    ports:
+      - "16234:16224"
+    networks:
+      - szzn_net
+        # command: tail -f /dev/null
+networks:
+  szzn_net:
+    external: true

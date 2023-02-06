@@ -1,0 +1,130 @@
+templete:
+  common:
+    task_name: shouquan
+    batch_size: 32
+    break_step: null
+    device: cpu
+    patience: 5
+    min_patience_epoch: 15
+    epoch: 20
+    data_info: null
+    label_num: null
+    data_dir: null
+  initialization:
+    datasink_fn: DatasinkBase
+    sample_fn: SampleBase
+  model_config:
+    model_arch:
+      bert-NetBertBase:
+        attention_probs_dropout_prob: 0.1
+        directionality: bidi
+        hidden_act: gelu
+        hidden_dropout_prob: 0.1
+        hidden_size: 768
+        initializer_range: 0.02
+        intermediate_size: 3072
+        max_position_embeddings: 512
+        num_attention_heads: 12
+        num_hidden_layers: 12
+        pooler_fc_size: 768
+        pooler_num_attention_heads: 12
+        pooler_num_fc_layers: 3
+        pooler_size_per_head: 128
+        pooler_type: first_token_transform
+        type_vocab_size: 2
+        vocab_size: 21128
+      dropout-NetDropout:
+        p: 0.5
+      linear-NetLinear:
+        in_features: 768
+        out_features: 4
+      softmax-ActivateLogSoftmax:
+        dim: 1
+    forward_logist:
+      outputs-bert:
+        input_ids: var_args[0]
+        attention_mask: var_args[1]
+        token_type_ids: var_args[2]
+      logist-dropout:
+        input: var_outputs[1]
+    forward_training:
+      logist-linear:
+        input: var_logist
+      logist-softmax:
+        input: var_logist
+      loss_ce-loss_ce:
+        predict: var_logist
+        label: var_args[3]
+      loss-op_inplace:
+        input: var_loss_ce[0]
+      losses-op_inplace:
+        input: var_loss_ce[1]
+    forward_prediction:
+      logist-linear:
+        input: var_logist
+      logist-activate_softmax:
+        input: var_logist
+      pred-op_argmax:
+        logist: var_logist
+        dim: 1
+  hooks:
+    HookModelBase:
+      model_fn: ArchBase
+      model_config: ${templete.model_config}
+      loading_bert_param_fn: loading_param_bert
+      loading_full_param_fn: loading_param_base
+      pretrained_bert_path: models/bert-base/pytorch_model.bin
+      saving_model_path: model/model.pth
+      save_dir: model
+      device: ${templete.common.device}
+      initializer_range: 0.02
+      saving_model_fn: saving_model_base
+      reload_param: true
+    HookLossBase: null
+    HookProcessorBase:
+      processor_fn: ProcessorClsBert
+      max_len: 512
+      unk_token: '[UNK]'
+      sep_token: '[SEP]'
+      pad_token: '[PAD]'
+      cls_token: '[CLS]'
+      mask_token: '[MASK]'
+      cls_token_segment_id: 1
+      sequence_segment_id: 0
+      pad_token_segment_id: 0
+      vocab_path: models/bert-base/vocab.txt
+      weight_decay: 0.01
+      learning_rate: 3.0e-05
+      warmup_proportion: 0.1
+      adam_epsilon: 1.0e-08
+      label_fn: create_label
+      truth_types: 【招标授权委托书】|【合同签订授权委托书】|【乙方授权委托书】
+      saving_vocab_path: model/vocab.txt
+      saving_vocab_fn: saving_vocab_base
+    HookDataBase:
+      training_file_path: ${templete.common.data_dir}/training.jsonl
+      validation_file_path: ${templete.common.data_dir}/validation.jsonl
+      test_file_path: ${templete.common.data_dir}/test.jsonl
+      label_type: 【招标授权委托书】|【合同签订授权委托书】|【乙方授权委托书】
+      inference_data: null
+      create_sample_fn: read_jsonline
+      create_label_fn: create_label
+      create_feature_fn: create_feature_sep_bert
+      create_dataloader: create_dataloader
+      collate_fn: collate_bert_cla
+      restore_fn: restore_base
+      batch_size: ${templete.common.batch_size}
+    HookStrategyBase:
+      strategy_fn: strategy_bert_base
+      lr: 2.0e-05
+      linear_learning_rate: 0.001
+      warmup_proportion: 0.1
+      adam_epsilon: 1.0e-08
+    HookScoreF1:
+      counter_fn: count_tnpn_cls
+      metric_fn: metric_microf1_base
+    HookServiceFlask: null
+    HookTrainingBase: null
+    HookInferenceBase: null
+    HookMarkdownBase: null
+    HookBadcaseBase: null

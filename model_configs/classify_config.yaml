@@ -1,0 +1,16 @@
+model_name: bert
+dev_path: /szzn/langming/code/bert_classify/data_set/target_data/12_1_partAB/dev.jsonl # 验证集
+train_path: /szzn/langming/code/bert_classify/data_set/target_data/12_1_partAB/train.jsonl #/szzn/langming/code/bert_classify/data_set/target_data/12_1_partAB/down_sampling/train.jsonl #/szzn/langming/code/bert_classify/data_set/target_data/11_30_partAB/train.jsonl # 训练集
+label_path: /szzn/langming/code/bert_classify/data_set/target_data/11_30_partAB/label.txt # 类别名单
+save_path: /szzn/langming/code/contract_review/train_log/12_1_all_partA_partB_classify_log # 模型训练结果
+project_name: 12_1_dataset_all
+device: cuda:4 # 设备
+require_improvement: 5000 # 若超过1000step效果还没提升，则提前结束训练
+num_epochs: 50 # epoch数
+batch_size: 32 # mini-batch大小
+pad_size: 512 # 每句话处理成的长度(短填长切)
+learning_rate: 0.00005 # 学习率
+vocab_path: /szzn/langming/code/bert_classify/bert_pretrain/vocab.txt
+bert_path: /szzn/langming/code/contract_review/train_log/partA_partB_classify_log/12_1_dataset/bert_loss_0.09730911254882812_f1_0.9470468431771893.ckpt #/szzn/langming/code/pretrained_model/bert-base/torch
+bert_base_path: /szzn/langming/code/pretrained_model/bert-base/torch
+hidden_size: 768

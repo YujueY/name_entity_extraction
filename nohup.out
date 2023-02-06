@@ -1,0 +1,524 @@
+2022-11-28 11:16:40,981 PID:789748 INFO - file_utils.py [line:32]: TensorFlow version 2.6.0 available.
+2022-11-28 11:16:40,985 PID:789748 INFO - file_utils.py [line:39]: PyTorch version 1.11.0+cu102 available.
+2022-11-28 11:16:41,147 PID:789748 INFO - configuration_utils.py [line:148]: loading configuration file /app_name/nlp/yanyi/laiwu_tabatoo/models/bert-base_span_莱芜烟草+_v1/config.json
+2022-11-28 11:16:41,150 PID:789748 INFO - configuration_utils.py [line:170]: Model config {
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "loss_type": "ce",
+  "max_position_embeddings": 512,
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "num_labels": 26,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "pruned_heads": {},
+  "soft_label": true,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 21128
+}
+
+2022-11-28 11:16:41,153 PID:789748 INFO - tokenization_utils.py [line:306]: Model name '/app_name/nlp/yanyi/laiwu_tabatoo/models/bert-base_span_莱芜烟草+_v1' not found in model shortcut name list (bert-base-uncased, bert-large-uncased, bert-base-cased, bert-large-cased, bert-base-multilingual-uncased, bert-base-multilingual-cased, bert-base-chinese, bert-base-german-cased, bert-large-uncased-whole-word-masking, bert-large-cased-whole-word-masking, bert-large-uncased-whole-word-masking-finetuned-squad, bert-large-cased-whole-word-masking-finetuned-squad, bert-base-cased-finetuned-mrpc, bert-base-german-dbmdz-cased, bert-base-german-dbmdz-uncased). Assuming '/app_name/nlp/yanyi/laiwu_tabatoo/models/bert-base_span_莱芜烟草+_v1' is a path or url to a directory containing tokenizer files.
+2022-11-28 11:16:41,155 PID:789748 INFO - tokenization_utils.py [line:335]: Didn't find file /app_name/nlp/yanyi/laiwu_tabatoo/models/bert-base_span_莱芜烟草+_v1/added_tokens.json. We won't load it.
+2022-11-28 11:16:41,158 PID:789748 INFO - tokenization_utils.py [line:335]: Didn't find file /app_name/nlp/yanyi/laiwu_tabatoo/models/bert-base_span_莱芜烟草+_v1/special_tokens_map.json. We won't load it.
+2022-11-28 11:16:41,160 PID:789748 INFO - tokenization_utils.py [line:335]: Didn't find file /app_name/nlp/yanyi/laiwu_tabatoo/models/bert-base_span_莱芜烟草+_v1/tokenizer_config.json. We won't load it.
+2022-11-28 11:16:41,163 PID:789748 INFO - tokenization_utils.py [line:371]: loading file /app_name/nlp/yanyi/laiwu_tabatoo/models/bert-base_span_莱芜烟草+_v1/vocab.txt
+2022-11-28 11:16:41,166 PID:789748 INFO - tokenization_utils.py [line:371]: loading file None
+2022-11-28 11:16:41,168 PID:789748 INFO - tokenization_utils.py [line:371]: loading file None
+2022-11-28 11:16:41,171 PID:789748 INFO - tokenization_utils.py [line:371]: loading file None
+2022-11-28 11:16:41,196 PID:789748 INFO - modeling_utils.py [line:350]: loading weights file /app_name/nlp/yanyi/laiwu_tabatoo/models/bert-base_span_莱芜烟草+_v1/pytorch_model.bin
+200000
+ * Serving Flask app 'app' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+2022-11-28 11:16:49,991 PID:789748 WARNING - _internal.py [line:225]:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+2022-11-28 11:16:49,996 PID:789748 INFO - _internal.py [line:225]:  * Running on http://10.1.0.247:16223/ (Press CTRL+C to quit)
+2022-11-28 11:31:15,281 PID:789748 INFO - nlp.py [line:58]: ****************************************
+2022-11-28 11:31:15,286 PID:789748 INFO - nlp.py [line:59]: json_data
+2022-11-28 11:31:15,289 PID:789748 INFO - nlp.py [line:60]: 浙江省编号:BDC33011112022
+2022-11-28 11:31:15,292 PID:789748 INFO - nlp.py [line:61]: ****************************************
+Traceback (most recent call last):
+  File "/app_name/nlp/yanyi/laiwu_tabatoo/controller/extraction.py", line 98, in get_num_info
+    return c['data']['page_split_result']
+KeyError: 'page_split_result'
+2022-11-28 11:31:15,531 PID:789748 INFO - extraction.py [line:100]: None
+Traceback (most recent call last):
+  File "/app_name/nlp/yanyi/laiwu_tabatoo/app/nlp.py", line 81, in tender_review
+    review_results = get_review_result(json_data)
+  File "/app_name/nlp/yanyi/laiwu_tabatoo/app/nlp.py", line 71, in get_review_result
+    review_results = model.labels_inference(text, lines_info_data, all_item, id)
+  File "/app_name/nlp/yanyi/laiwu_tabatoo/utils/time_cost.py", line 19, in function_timer
+    result = function(*args, **kwargs)
+  File "/app_name/nlp/yanyi/laiwu_tabatoo/controller/extraction.py", line 174, in labels_inference
+    for k, v in temp_num_word.items():
+AttributeError: 'NoneType' object has no attribute 'items'
+2022-11-28 11:31:15,537 PID:789748 INFO - nlp.py [line:85]: None
+2022-11-28 11:31:15,542 PID:789748 INFO - _internal.py [line:225]: 10.4.2.111 - - [28/Nov/2022 11:31:15] "POST /laiwu_tobatoo HTTP/1.1" 200 -
+2022-11-28 11:39:46,747 PID:789748 INFO - nlp.py [line:58]: ****************************************
+2022-11-28 11:39:46,750 PID:789748 INFO - nlp.py [line:59]: json_data
+2022-11-28 11:39:46,753 PID:789748 INFO - nlp.py [line:60]: 件1中国烟草CHINATOBACCO莱芜
+2022-11-28 11:39:46,755 PID:789748 INFO - nlp.py [line:61]: ****************************************
+2022-11-28 11:40:27,718 PID:789748 INFO - nlp.py [line:58]: ****************************************
+2022-11-28 11:40:27,722 PID:789748 INFO - nlp.py [line:59]: json_data
+2022-11-28 11:40:27,724 PID:789748 INFO - nlp.py [line:60]: 中国烟草CHINATOBACCO莱芜市烟
+2022-11-28 11:40:27,727 PID:789748 INFO - nlp.py [line:61]: ****************************************
+2022-11-28 11:40:51,272 PID:789748 INFO - nlp.py [line:58]: ****************************************
+2022-11-28 11:40:51,279 PID:789748 INFO - nlp.py [line:59]: json_data
+2022-11-28 11:40:51,285 PID:789748 INFO - nlp.py [line:60]: 附件1中国烟草CHINATOBACCO山
+2022-11-28 11:40:51,288 PID:789748 INFO - nlp.py [line:61]: ****************************************
+2022-11-28 11:41:13,521 PID:789748 INFO - nlp.py [line:58]: ****************************************
+2022-11-28 11:41:13,525 PID:789748 INFO - nlp.py [line:59]: json_data
+2022-11-28 11:41:13,529 PID:789748 INFO - nlp.py [line:60]: 中国烟草CHINATOBACCO莱芜市烟
+2022-11-28 11:41:13,532 PID:789748 INFO - nlp.py [line:61]: ****************************************
+2022-11-28 11:41:15,810 PID:789748 INFO - time_cost.py [line:22]: function: labels_inference cost time: 89.05201435089111
+2022-11-28 11:41:15,832 PID:789748 INFO - _internal.py [line:225]: 10.4.2.111 - - [28/Nov/2022 11:41:15] "POST /laiwu_tobatoo HTTP/1.1" 200 -
+2022-11-28 11:41:21,449 PID:789748 INFO - time_cost.py [line:22]: function: labels_inference cost time: 53.720301151275635
+2022-11-28 11:41:21,463 PID:789748 INFO - _internal.py [line:225]: 10.4.2.111 - - [28/Nov/2022 11:41:21] "POST /laiwu_tobatoo HTTP/1.1" 200 -
+2022-11-28 11:42:16,556 PID:789748 INFO - time_cost.py [line:22]: function: labels_inference cost time: 85.26465725898743
+2022-11-28 11:42:16,581 PID:789748 INFO - _internal.py [line:225]: 10.4.2.111 - - [28/Nov/2022 11:42:16] "POST /laiwu_tobatoo HTTP/1.1" 200 -
+2022-11-28 11:42:31,467 PID:789748 INFO - time_cost.py [line:22]: function: labels_inference cost time: 77.93090176582336
+2022-11-28 11:42:31,480 PID:789748 INFO - _internal.py [line:225]: 10.4.2.111 - - [28/Nov/2022 11:42:31] "POST /laiwu_tobatoo HTTP/1.1" 200 -
+2022-11-28 11:44:43,709 PID:789748 INFO - nlp.py [line:58]: ****************************************
+2022-11-28 11:44:43,713 PID:789748 INFO - nlp.py [line:59]: json_data
+2022-11-28 11:44:43,716 PID:789748 INFO - nlp.py [line:60]: 中国烟草CHINATOBACCO莱芜烟草
+2022-11-28 11:44:43,718 PID:789748 INFO - nlp.py [line:61]: ****************************************
+2022-11-28 11:45:24,114 PID:789748 INFO - time_cost.py [line:22]: function: labels_inference cost time: 40.39355278015137
+2022-11-28 11:45:24,126 PID:789748 INFO - _internal.py [line:225]: 10.4.2.111 - - [28/Nov/2022 11:45:24] "POST /laiwu_tobatoo HTTP/1.1" 200 -
+2022-11-28 11:46:58,842 PID:789748 INFO - nlp.py [line:58]: ****************************************
+2022-11-28 11:46:58,847 PID:789748 INFO - nlp.py [line:59]: json_data
+2022-11-28 11:46:58,849 PID:789748 INFO - nlp.py [line:60]: 中国烟草CHINATOBACCO莱芜烟草
+2022-11-28 11:46:58,852 PID:789748 INFO - nlp.py [line:61]: ****************************************
+2022-11-28 11:48:22,388 PID:789748 INFO - time_cost.py [line:22]: function: labels_inference cost time: 83.53334069252014
+2022-11-28 11:48:22,409 PID:789748 INFO - _internal.py [line:225]: 10.4.2.111 - - [28/Nov/2022 11:48:22] "POST /laiwu_tobatoo HTTP/1.1" 200 -
+2022-11-28 14:40:55,367 PID:789748 INFO - nlp.py [line:58]: ****************************************
+2022-11-28 14:40:55,371 PID:789748 INFO - nlp.py [line:59]: json_data
+2022-11-28 14:40:55,373 PID:789748 INFO - nlp.py [line:60]: ¥附件1中国烟草CHINATOBACCO
+2022-11-28 14:40:55,376 PID:789748 INFO - nlp.py [line:61]: ****************************************
+2022-11-28 14:42:13,147 PID:789748 INFO - time_cost.py [line:22]: function: labels_inference cost time: 77.76837086677551
+2022-11-28 14:42:13,166 PID:789748 INFO - _internal.py [line:225]: 10.4.2.111 - - [28/Nov/2022 14:42:13] "POST /laiwu_tobatoo HTTP/1.1" 200 -
+2022-11-28 15:09:00,968 PID:789748 INFO - nlp.py [line:58]: ****************************************
+2022-11-28 15:09:00,972 PID:789748 INFO - nlp.py [line:59]: json_data
+2022-11-28 15:09:00,974 PID:789748 INFO - nlp.py [line:60]: 中国烟草CHINATOBACCO莱芜烟草
+2022-11-28 15:09:00,977 PID:789748 INFO - nlp.py [line:61]: ****************************************
+2022-11-28 15:10:10,383 PID:789748 INFO - nlp.py [line:58]: ****************************************
+2022-11-28 15:10:10,387 PID:789748 INFO - nlp.py [line:59]: json_data
+2022-11-28 15:10:10,390 PID:789748 INFO - nlp.py [line:60]: -5$附件2招标项目"一项一卷"资料组卷
+2022-11-28 15:10:10,393 PID:789748 INFO - nlp.py [line:61]: ****************************************
+2022-11-28 15:10:38,519 PID:789748 INFO - time_cost.py [line:22]: function: labels_inference cost time: 97.5396318435669
+2022-11-28 15:10:38,539 PID:789748 INFO - _internal.py [line:225]: 10.4.2.111 - - [28/Nov/2022 15:10:38] "POST /laiwu_tobatoo HTTP/1.1" 200 -
+2022-11-28 15:13:18,303 PID:789748 INFO - time_cost.py [line:22]: function: labels_inference cost time: 187.90742325782776
+2022-11-28 15:13:18,342 PID:789748 INFO - _internal.py [line:225]: 10.4.2.111 - - [28/Nov/2022 15:13:18] "POST /laiwu_tobatoo HTTP/1.1" 200 -
+2022-11-28 15:20:48,760 PID:789748 INFO - nlp.py [line:58]: ****************************************
+2022-11-28 15:20:48,764 PID:789748 INFO - nlp.py [line:59]: json_data
+2022-11-28 15:20:48,766 PID:789748 INFO - nlp.py [line:60]: ¥附件1中国烟草CHINATOBACCO
+2022-11-28 15:20:48,769 PID:789748 INFO - nlp.py [line:61]: ****************************************
+2022-11-28 15:22:04,151 PID:789748 INFO - time_cost.py [line:22]: function: labels_inference cost time: 75.37899327278137
+2022-11-28 15:22:04,173 PID:789748 INFO - _internal.py [line:225]: 10.4.2.111 - - [28/Nov/2022 15:22:04] "POST /laiwu_tobatoo HTTP/1.1" 200 -
+2022-11-28 15:35:41,166 PID:789748 INFO - nlp.py [line:58]: ****************************************
+2022-11-28 15:35:41,170 PID:789748 INFO - nlp.py [line:59]: json_data
+2022-11-28 15:35:41,174 PID:789748 INFO - nlp.py [line:60]: ¥附件1中国烟草CHINATOBACCO
+2022-11-28 15:35:41,177 PID:789748 INFO - nlp.py [line:61]: ****************************************
+2022-11-28 15:36:55,648 PID:789748 INFO - time_cost.py [line:22]: function: labels_inference cost time: 74.46794080734253
+2022-11-28 15:36:55,669 PID:789748 INFO - _internal.py [line:225]: 10.4.2.111 - - [28/Nov/2022 15:36:55] "POST /laiwu_tobatoo HTTP/1.1" 200 -
+2022-11-28 15:43:40,984 PID:789748 INFO - nlp.py [line:58]: ****************************************
+2022-11-28 15:43:40,988 PID:789748 INFO - nlp.py [line:59]: json_data
+2022-11-28 15:43:40,992 PID:789748 INFO - nlp.py [line:60]: dN附件市局(公司)2022年度采购计划
+2022-11-28 15:43:40,994 PID:789748 INFO - nlp.py [line:61]: ****************************************
+2022-11-28 15:43:52,596 PID:789748 INFO - time_cost.py [line:22]: function: labels_inference cost time: 11.599456548690796
+2022-11-28 15:43:52,601 PID:789748 INFO - _internal.py [line:225]: 10.4.2.111 - - [28/Nov/2022 15:43:52] "POST /laiwu_tobatoo HTTP/1.1" 200 -
+2022-11-28 15:47:45,420 PID:789748 INFO - nlp.py [line:58]: ****************************************
+2022-11-28 15:47:45,423 PID:789748 INFO - nlp.py [line:59]: json_data
+2022-11-28 15:47:45,426 PID:789748 INFO - nlp.py [line:60]: ¥附件1中国烟草CHINATOBACCO
+2022-11-28 15:47:45,428 PID:789748 INFO - nlp.py [line:61]: ****************************************
+2022-11-28 15:49:37,884 PID:789748 INFO - time_cost.py [line:22]: function: labels_inference cost time: 112.45345997810364
+2022-11-28 15:49:37,902 PID:789748 INFO - _internal.py [line:225]: 10.4.2.111 - - [28/Nov/2022 15:49:37] "POST /laiwu_tobatoo HTTP/1.1" 200 -
+2022-11-28 16:01:29,418 PID:789748 INFO - nlp.py [line:58]: ****************************************
+2022-11-28 16:01:29,423 PID:789748 INFO - nlp.py [line:59]: json_data
+2022-11-28 16:01:29,425 PID:789748 INFO - nlp.py [line:60]: --☆系统生成☆--
+2022-11-28 16:01:29,428 PID:789748 INFO - nlp.py [line:61]: ****************************************
+2022-11-28 16:01:29,987 PID:789748 INFO - time_cost.py [line:22]: function: labels_inference cost time: 0.5566637516021729
+2022-11-28 16:01:29,990 PID:789748 INFO - _internal.py [line:225]: 10.4.2.111 - - [28/Nov/2022 16:01:29] "POST /laiwu_tobatoo HTTP/1.1" 200 -
+2022-11-28 16:14:04,832 PID:789748 INFO - nlp.py [line:58]: ****************************************
+2022-11-28 16:14:04,837 PID:789748 INFO - nlp.py [line:59]: json_data
+2022-11-28 16:14:04,840 PID:789748 INFO - nlp.py [line:60]: --☆系统生成☆--
+2022-11-28 16:14:04,844 PID:789748 INFO - nlp.py [line:61]: ****************************************
+2022-11-28 16:14:06,347 PID:789748 INFO - time_cost.py [line:22]: function: labels_inference cost time: 1.5004668235778809
+2022-11-28 16:14:06,351 PID:789748 INFO - _internal.py [line:225]: 10.4.2.111 - - [28/Nov/2022 16:14:06] "POST /laiwu_tobatoo HTTP/1.1" 200 -
+2022-11-28 16:42:12,453 PID:789748 INFO - nlp.py [line:58]: ****************************************
+2022-11-28 16:42:12,498 PID:789748 INFO - nlp.py [line:59]: json_data
+2022-11-28 16:42:12,502 PID:789748 INFO - nlp.py [line:60]: 同意*负责人:高志坚2022年07月20
+2022-11-28 16:42:12,505 PID:789748 INFO - nlp.py [line:61]: ****************************************
+2022-11-28 16:42:12,945 PID:789748 INFO - time_cost.py [line:22]: function: labels_inference cost time: 0.43752169609069824
+2022-11-28 16:42:12,949 PID:789748 INFO - _internal.py [line:225]: 10.4.2.111 - - [28/Nov/2022 16:42:12] "POST /laiwu_tobatoo HTTP/1.1" 200 -
+2022-11-28 16:48:21,723 PID:789748 INFO - nlp.py [line:58]: ****************************************
+2022-11-28 16:48:21,727 PID:789748 INFO - nlp.py [line:59]: json_data
+2022-11-28 16:48:21,730 PID:789748 INFO - nlp.py [line:60]: --☆系统生成☆--
+2022-11-28 16:48:21,798 PID:789748 INFO - nlp.py [line:61]: ****************************************
+2022-11-28 16:48:22,693 PID:789748 INFO - time_cost.py [line:22]: function: labels_inference cost time: 0.8919517993927002
+2022-11-28 16:48:22,697 PID:789748 INFO - _internal.py [line:225]: 10.4.2.111 - - [28/Nov/2022 16:48:22] "POST /laiwu_tobatoo HTTP/1.1" 200 -
+2022-11-28 17:05:02,839 PID:789748 INFO - nlp.py [line:58]: ****************************************
+2022-11-28 17:05:02,843 PID:789748 INFO - nlp.py [line:59]: json_data
+2022-11-28 17:05:02,846 PID:789748 INFO - nlp.py [line:60]: 2022/8/19公开信息发布公开信息o
+2022-11-28 17:05:02,849 PID:789748 INFO - nlp.py [line:61]: ****************************************
+2022-11-28 17:05:03,378 PID:789748 INFO - time_cost.py [line:22]: function: labels_inference cost time: 0.5270864963531494
+2022-11-28 17:05:03,382 PID:789748 INFO - _internal.py [line:225]: 10.4.2.111 - - [28/Nov/2022 17:05:03] "POST /laiwu_tobatoo HTTP/1.1" 200 -
+2022-11-28 17:21:11,524 PID:789748 INFO - nlp.py [line:58]: ****************************************
+2022-11-28 17:21:11,528 PID:789748 INFO - nlp.py [line:59]: json_data
+2022-11-28 17:21:11,531 PID:789748 INFO - nlp.py [line:60]: 2022/8/19公开信息发布公开信息o
+2022-11-28 17:21:11,533 PID:789748 INFO - nlp.py [line:61]: ****************************************
+2022-11-28 17:22:05,966 PID:789748 INFO - time_cost.py [line:22]: function: labels_inference cost time: 54.43009638786316
+2022-11-28 17:22:05,979 PID:789748 INFO - _internal.py [line:225]: 10.4.2.111 - - [28/Nov/2022 17:22:05] "POST /laiwu_tobatoo HTTP/1.1" 200 -
+2022-11-28 17:45:38,823 PID:789748 INFO - nlp.py [line:58]: ****************************************
+2022-11-28 17:45:38,836 PID:789748 INFO - nlp.py [line:59]: json_data
+2022-11-28 17:45:38,838 PID:789748 INFO - nlp.py [line:60]: 2022/8/19公开信息发布公开信息o
+2022-11-28 17:45:38,847 PID:789748 INFO - nlp.py [line:61]: ****************************************
+2022-11-28 17:46:33,911 PID:789748 INFO - time_cost.py [line:22]: function: labels_inference cost time: 55.06080365180969
+2022-11-28 17:46:33,924 PID:789748 INFO - _internal.py [line:225]: 10.4.2.111 - - [28/Nov/2022 17:46:33] "POST /laiwu_tobatoo HTTP/1.1" 200 -
+2022-11-28 18:09:06,859 PID:789748 INFO - nlp.py [line:58]: ****************************************
+2022-11-28 18:09:06,896 PID:789748 INFO - nlp.py [line:59]: json_data
+2022-11-28 18:09:06,900 PID:789748 INFO - nlp.py [line:60]: 授权委托书委托人:莱芜市烟草专卖局(公司
+2022-11-28 18:09:06,902 PID:789748 INFO - nlp.py [line:61]: ****************************************
+2022-11-28 18:09:07,712 PID:789748 INFO - time_cost.py [line:22]: function: labels_inference cost time: 0.8075621128082275
+2022-11-28 18:09:07,716 PID:789748 INFO - _internal.py [line:225]: 10.4.2.111 - - [28/Nov/2022 18:09:07] "POST /laiwu_tobatoo HTTP/1.1" 200 -
+2022-11-28 18:09:11,873 PID:789748 INFO - nlp.py [line:58]: ****************************************
+2022-11-28 18:09:11,877 PID:789748 INFO - nlp.py [line:59]: json_data
+2022-11-28 18:09:11,879 PID:789748 INFO - nlp.py [line:60]: 山东莱芜烟草有限公司车辆保险采购项目合同
+2022-11-28 18:09:11,882 PID:789748 INFO - nlp.py [line:61]: ****************************************
+2022-11-28 18:09:17,153 PID:789748 INFO - time_cost.py [line:22]: function: labels_inference cost time: 5.268606901168823
+2022-11-28 18:09:17,159 PID:789748 INFO - _internal.py [line:225]: 10.4.2.111 - - [28/Nov/2022 18:09:17] "POST /laiwu_tobatoo HTTP/1.1" 200 -
+2022-11-28 18:10:24,830 PID:789748 INFO - nlp.py [line:58]: ****************************************
+2022-11-28 18:10:24,835 PID:789748 INFO - nlp.py [line:59]: json_data
+2022-11-28 18:10:24,838 PID:789748 INFO - nlp.py [line:60]: 授权委托书委托人:莱芜市烟草专卖局(公司
+2022-11-28 18:10:24,841 PID:789748 INFO - nlp.py [line:61]: ****************************************
+2022-11-28 18:10:26,313 PID:789748 INFO - time_cost.py [line:22]: function: labels_inference cost time: 1.4690780639648438
+2022-11-28 18:10:26,385 PID:789748 INFO - _internal.py [line:225]: 10.4.2.111 - - [28/Nov/2022 18:10:26] "POST /laiwu_tobatoo HTTP/1.1" 200 -
+2022-11-28 18:35:26,954 PID:789748 INFO - nlp.py [line:58]: ****************************************
+2022-11-28 18:35:26,957 PID:789748 INFO - nlp.py [line:59]: json_data
+2022-11-28 18:35:26,960 PID:789748 INFO - nlp.py [line:60]: 2022/8/19公开信息发布公开信息o
+2022-11-28 18:35:26,963 PID:789748 INFO - nlp.py [line:61]: ****************************************
+2022-11-28 18:36:41,026 PID:789748 INFO - time_cost.py [line:22]: function: labels_inference cost time: 74.06055164337158
+2022-11-28 18:36:41,040 PID:789748 INFO - _internal.py [line:225]: 10.4.2.111 - - [28/Nov/2022 18:36:41] "POST /laiwu_tobatoo HTTP/1.1" 200 -
+2022-12-07 13:44:18,136 PID:1103237 INFO - file_utils.py [line:32]: TensorFlow version 2.6.0 available.
+2022-12-07 13:44:18,162 PID:1103237 INFO - file_utils.py [line:39]: PyTorch version 1.11.0+cu102 available.
+2022-12-07 13:44:18,805 PID:1103237 INFO - configuration_utils.py [line:148]: loading configuration file /app_name/nlp/yanyi/laiwu_tabatoo/models/bert-base_span_莱芜烟草+_v1/config.json
+2022-12-07 13:44:18,811 PID:1103237 INFO - configuration_utils.py [line:170]: Model config {
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "loss_type": "ce",
+  "max_position_embeddings": 512,
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "num_labels": 26,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "pruned_heads": {},
+  "soft_label": true,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 21128
+}
+
+2022-12-07 13:44:18,814 PID:1103237 INFO - tokenization_utils.py [line:306]: Model name '/app_name/nlp/yanyi/laiwu_tabatoo/models/bert-base_span_莱芜烟草+_v1' not found in model shortcut name list (bert-base-uncased, bert-large-uncased, bert-base-cased, bert-large-cased, bert-base-multilingual-uncased, bert-base-multilingual-cased, bert-base-chinese, bert-base-german-cased, bert-large-uncased-whole-word-masking, bert-large-cased-whole-word-masking, bert-large-uncased-whole-word-masking-finetuned-squad, bert-large-cased-whole-word-masking-finetuned-squad, bert-base-cased-finetuned-mrpc, bert-base-german-dbmdz-cased, bert-base-german-dbmdz-uncased). Assuming '/app_name/nlp/yanyi/laiwu_tabatoo/models/bert-base_span_莱芜烟草+_v1' is a path or url to a directory containing tokenizer files.
+2022-12-07 13:44:18,818 PID:1103237 INFO - tokenization_utils.py [line:335]: Didn't find file /app_name/nlp/yanyi/laiwu_tabatoo/models/bert-base_span_莱芜烟草+_v1/added_tokens.json. We won't load it.
+2022-12-07 13:44:18,821 PID:1103237 INFO - tokenization_utils.py [line:335]: Didn't find file /app_name/nlp/yanyi/laiwu_tabatoo/models/bert-base_span_莱芜烟草+_v1/special_tokens_map.json. We won't load it.
+2022-12-07 13:44:18,863 PID:1103237 INFO - tokenization_utils.py [line:335]: Didn't find file /app_name/nlp/yanyi/laiwu_tabatoo/models/bert-base_span_莱芜烟草+_v1/tokenizer_config.json. We won't load it.
+2022-12-07 13:44:18,866 PID:1103237 INFO - tokenization_utils.py [line:371]: loading file /app_name/nlp/yanyi/laiwu_tabatoo/models/bert-base_span_莱芜烟草+_v1/vocab.txt
+2022-12-07 13:44:18,869 PID:1103237 INFO - tokenization_utils.py [line:371]: loading file None
+2022-12-07 13:44:18,871 PID:1103237 INFO - tokenization_utils.py [line:371]: loading file None
+2022-12-07 13:44:18,874 PID:1103237 INFO - tokenization_utils.py [line:371]: loading file None
+2022-12-07 13:44:18,909 PID:1103237 INFO - modeling_utils.py [line:350]: loading weights file /app_name/nlp/yanyi/laiwu_tabatoo/models/bert-base_span_莱芜烟草+_v1/pytorch_model.bin
+200000
+ * Serving Flask app 'app' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+Traceback (most recent call last):
+  File "setup_app.py", line 20, in <module>
+    flask_app.run(host='0.0.0.0', port=16223, debug=False)
+  File "/opt/anaconda3/envs/yanyi/lib/python3.7/site-packages/flask/app.py", line 922, in run
+    run_simple(t.cast(str, host), port, self, **options)
+  File "/opt/anaconda3/envs/yanyi/lib/python3.7/site-packages/werkzeug/serving.py", line 1008, in run_simple
+    inner()
+  File "/opt/anaconda3/envs/yanyi/lib/python3.7/site-packages/werkzeug/serving.py", line 957, in inner
+    fd=fd,
+  File "/opt/anaconda3/envs/yanyi/lib/python3.7/site-packages/werkzeug/serving.py", line 781, in make_server
+    host, port, app, request_handler, passthrough_errors, ssl_context, fd=fd
+  File "/opt/anaconda3/envs/yanyi/lib/python3.7/site-packages/werkzeug/serving.py", line 686, in __init__
+    super().__init__(server_address, handler)  # type: ignore
+  File "/opt/anaconda3/envs/yanyi/lib/python3.7/socketserver.py", line 452, in __init__
+    self.server_bind()
+  File "/opt/anaconda3/envs/yanyi/lib/python3.7/http/server.py", line 137, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/opt/anaconda3/envs/yanyi/lib/python3.7/socketserver.py", line 466, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 98] Address already in use
+2022-12-08 14:02:23,403 PID:234583 INFO - file_utils.py [line:32]: TensorFlow version 2.6.0 available.
+2022-12-08 14:02:23,406 PID:234583 INFO - file_utils.py [line:39]: PyTorch version 1.11.0+cu102 available.
+2022-12-08 14:02:25,000 PID:234583 INFO - configuration_utils.py [line:148]: loading configuration file /app_name/nlp/yanyi/laiwu_tabatoo/models/bert-base_span_莱芜烟草+_v1/config.json
+2022-12-08 14:02:25,016 PID:234583 INFO - configuration_utils.py [line:170]: Model config {
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "loss_type": "ce",
+  "max_position_embeddings": 512,
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "num_labels": 26,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "pruned_heads": {},
+  "soft_label": true,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 21128
+}
+
+2022-12-08 14:02:25,020 PID:234583 INFO - tokenization_utils.py [line:306]: Model name '/app_name/nlp/yanyi/laiwu_tabatoo/models/bert-base_span_莱芜烟草+_v1' not found in model shortcut name list (bert-base-uncased, bert-large-uncased, bert-base-cased, bert-large-cased, bert-base-multilingual-uncased, bert-base-multilingual-cased, bert-base-chinese, bert-base-german-cased, bert-large-uncased-whole-word-masking, bert-large-cased-whole-word-masking, bert-large-uncased-whole-word-masking-finetuned-squad, bert-large-cased-whole-word-masking-finetuned-squad, bert-base-cased-finetuned-mrpc, bert-base-german-dbmdz-cased, bert-base-german-dbmdz-uncased). Assuming '/app_name/nlp/yanyi/laiwu_tabatoo/models/bert-base_span_莱芜烟草+_v1' is a path or url to a directory containing tokenizer files.
+2022-12-08 14:02:25,023 PID:234583 INFO - tokenization_utils.py [line:335]: Didn't find file /app_name/nlp/yanyi/laiwu_tabatoo/models/bert-base_span_莱芜烟草+_v1/added_tokens.json. We won't load it.
+2022-12-08 14:02:25,025 PID:234583 INFO - tokenization_utils.py [line:335]: Didn't find file /app_name/nlp/yanyi/laiwu_tabatoo/models/bert-base_span_莱芜烟草+_v1/special_tokens_map.json. We won't load it.
+2022-12-08 14:02:25,027 PID:234583 INFO - tokenization_utils.py [line:335]: Didn't find file /app_name/nlp/yanyi/laiwu_tabatoo/models/bert-base_span_莱芜烟草+_v1/tokenizer_config.json. We won't load it.
+2022-12-08 14:02:25,030 PID:234583 INFO - tokenization_utils.py [line:371]: loading file /app_name/nlp/yanyi/laiwu_tabatoo/models/bert-base_span_莱芜烟草+_v1/vocab.txt
+2022-12-08 14:02:25,032 PID:234583 INFO - tokenization_utils.py [line:371]: loading file None
+2022-12-08 14:02:25,034 PID:234583 INFO - tokenization_utils.py [line:371]: loading file None
+2022-12-08 14:02:25,036 PID:234583 INFO - tokenization_utils.py [line:371]: loading file None
+2022-12-08 14:02:25,091 PID:234583 INFO - modeling_utils.py [line:350]: loading weights file /app_name/nlp/yanyi/laiwu_tabatoo/models/bert-base_span_莱芜烟草+_v1/pytorch_model.bin
+200000
+ * Serving Flask app 'app' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+2022-12-08 14:02:33,611 PID:234583 WARNING - _internal.py [line:225]:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+2022-12-08 14:02:33,648 PID:234583 INFO - _internal.py [line:225]:  * Running on http://10.1.0.247:16223/ (Press CTRL+C to quit)
+2022-12-08 14:08:01,771 PID:234583 INFO - nlp.py [line:58]: ****************************************
+2022-12-08 14:08:01,774 PID:234583 INFO - nlp.py [line:59]: json_data
+2022-12-08 14:08:01,776 PID:234583 INFO - nlp.py [line:60]: 中国烟草CHINATOBACCO莱芜烟草
+2022-12-08 14:08:01,778 PID:234583 INFO - nlp.py [line:61]: ****************************************
+2022-12-08 14:11:21,803 PID:234583 INFO - time_cost.py [line:22]: function: labels_inference cost time: 200.02294611930847
+2022-12-08 14:11:21,831 PID:234583 INFO - _internal.py [line:225]: 10.4.2.111 - - [08/Dec/2022 14:11:21] "POST /laiwu_tobatoo HTTP/1.1" 200 -
+2022-12-08 14:25:58,965 PID:234583 INFO - nlp.py [line:58]: ****************************************
+2022-12-08 14:25:58,969 PID:234583 INFO - nlp.py [line:59]: json_data
+2022-12-08 14:25:58,972 PID:234583 INFO - nlp.py [line:60]: 附件1中国烟草CHINATOBACCO莱
+2022-12-08 14:25:58,974 PID:234583 INFO - nlp.py [line:61]: ****************************************
+2022-12-08 14:28:57,168 PID:234583 INFO - time_cost.py [line:22]: function: labels_inference cost time: 178.19189953804016
+2022-12-08 14:28:57,736 PID:234583 INFO - _internal.py [line:225]: 10.4.2.111 - - [08/Dec/2022 14:28:57] "POST /laiwu_tobatoo HTTP/1.1" 200 -
+2022-12-08 14:38:32,106 PID:234583 INFO - nlp.py [line:58]: ****************************************
+2022-12-08 14:38:32,110 PID:234583 INFO - nlp.py [line:59]: json_data
+2022-12-08 14:38:32,112 PID:234583 INFO - nlp.py [line:60]: 附件2招标项目"一项一卷"资料组卷目录_
+2022-12-08 14:38:32,115 PID:234583 INFO - nlp.py [line:61]: ****************************************
+2022-12-08 14:43:47,199 PID:234583 INFO - time_cost.py [line:22]: function: labels_inference cost time: 315.08224081993103
+2022-12-08 14:43:47,246 PID:234583 INFO - _internal.py [line:225]: 10.4.2.111 - - [08/Dec/2022 14:43:47] "POST /laiwu_tobatoo HTTP/1.1" 200 -
+2022-12-08 14:58:19,539 PID:234583 INFO - nlp.py [line:58]: ****************************************
+2022-12-08 14:58:19,544 PID:234583 INFO - nlp.py [line:59]: json_data
+2022-12-08 14:58:19,546 PID:234583 INFO - nlp.py [line:60]: 中国烟草CHINATOBACCO莱芜烟草
+2022-12-08 14:58:19,548 PID:234583 INFO - nlp.py [line:61]: ****************************************
+2022-12-08 14:59:46,388 PID:234583 INFO - time_cost.py [line:22]: function: labels_inference cost time: 86.8367428779602
+2022-12-08 14:59:46,402 PID:234583 INFO - _internal.py [line:225]: 10.4.2.111 - - [08/Dec/2022 14:59:46] "POST /laiwu_tobatoo HTTP/1.1" 200 -
+2022-12-08 15:06:41,720 PID:234583 INFO - nlp.py [line:58]: ****************************************
+2022-12-08 15:06:41,724 PID:234583 INFO - nlp.py [line:59]: json_data
+2022-12-08 15:06:41,726 PID:234583 INFO - nlp.py [line:60]: 中国烟草CHINATOBACCO莱芜烟草
+2022-12-08 15:06:41,729 PID:234583 INFO - nlp.py [line:61]: ****************************************
+2022-12-08 15:08:05,362 PID:234583 INFO - time_cost.py [line:22]: function: labels_inference cost time: 83.63063526153564
+2022-12-08 15:08:05,378 PID:234583 INFO - _internal.py [line:225]: 10.20.6.78 - - [08/Dec/2022 15:08:05] "POST /laiwu_tobatoo HTTP/1.1" 200 -
+2022-12-08 15:50:06,665 PID:234583 INFO - nlp.py [line:58]: ****************************************
+2022-12-08 15:50:06,669 PID:234583 INFO - nlp.py [line:59]: json_data
+2022-12-08 15:50:06,708 PID:234583 INFO - nlp.py [line:60]: 中国烟草CHINATOBACCO莱芜烟草
+2022-12-08 15:50:06,711 PID:234583 INFO - nlp.py [line:61]: ****************************************
+2022-12-08 15:51:26,694 PID:234583 INFO - time_cost.py [line:22]: function: labels_inference cost time: 79.95275259017944
+2022-12-08 15:51:26,712 PID:234583 INFO - _internal.py [line:225]: 10.20.6.78 - - [08/Dec/2022 15:51:26] "POST /laiwu_tobatoo HTTP/1.1" 200 -
+2022-12-08 15:59:13,459 PID:234583 INFO - nlp.py [line:58]: ****************************************
+2022-12-08 15:59:13,500 PID:234583 INFO - nlp.py [line:59]: json_data
+2022-12-08 15:59:13,503 PID:234583 INFO - nlp.py [line:60]: 中国烟草CHINATOBACCO莱芜烟草
+2022-12-08 15:59:13,505 PID:234583 INFO - nlp.py [line:61]: ****************************************
+2022-12-08 16:00:51,459 PID:234583 INFO - time_cost.py [line:22]: function: labels_inference cost time: 97.95147681236267
+2022-12-08 16:00:51,693 PID:234583 INFO - _internal.py [line:225]: 10.20.6.78 - - [08/Dec/2022 16:00:51] "POST /laiwu_tobatoo HTTP/1.1" 200 -
+2022-12-08 16:23:07,247 PID:234583 INFO - nlp.py [line:58]: ****************************************
+2022-12-08 16:23:07,293 PID:234583 INFO - nlp.py [line:59]: json_data
+2022-12-08 16:23:07,296 PID:234583 INFO - nlp.py [line:60]: 中国烟草CHINATOBACCO莱芜烟草
+2022-12-08 16:23:07,302 PID:234583 INFO - nlp.py [line:61]: ****************************************
+2022-12-08 16:24:30,819 PID:234583 INFO - time_cost.py [line:22]: function: labels_inference cost time: 83.51141476631165
+2022-12-08 16:24:30,837 PID:234583 INFO - _internal.py [line:225]: 10.4.2.111 - - [08/Dec/2022 16:24:30] "POST /laiwu_tobatoo HTTP/1.1" 200 -
+2022-12-28 16:27:29,316 PID:1677804 INFO - file_utils.py [line:32]: TensorFlow version 2.6.0 available.
+2022-12-28 16:27:29,330 PID:1677804 INFO - file_utils.py [line:39]: PyTorch version 1.11.0+cu102 available.
+2022-12-28 16:27:29,835 PID:1677804 INFO - configuration_utils.py [line:148]: loading configuration file /app_name/nlp/yanyi/laiwu_tobacco/laiwu_tobacco_xunjia/models/bert-base_span_莱芜烟草询价+_v2/config.json
+2022-12-28 16:27:29,839 PID:1677804 INFO - configuration_utils.py [line:170]: Model config {
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "loss_type": "ce",
+  "max_position_embeddings": 512,
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "num_labels": 19,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "pruned_heads": {},
+  "soft_label": true,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 21128
+}
+
+2022-12-28 16:27:29,842 PID:1677804 INFO - tokenization_utils.py [line:306]: Model name '/app_name/nlp/yanyi/laiwu_tobacco/laiwu_tobacco_xunjia/models/bert-base_span_莱芜烟草询价+_v2' not found in model shortcut name list (bert-base-uncased, bert-large-uncased, bert-base-cased, bert-large-cased, bert-base-multilingual-uncased, bert-base-multilingual-cased, bert-base-chinese, bert-base-german-cased, bert-large-uncased-whole-word-masking, bert-large-cased-whole-word-masking, bert-large-uncased-whole-word-masking-finetuned-squad, bert-large-cased-whole-word-masking-finetuned-squad, bert-base-cased-finetuned-mrpc, bert-base-german-dbmdz-cased, bert-base-german-dbmdz-uncased). Assuming '/app_name/nlp/yanyi/laiwu_tobacco/laiwu_tobacco_xunjia/models/bert-base_span_莱芜烟草询价+_v2' is a path or url to a directory containing tokenizer files.
+2022-12-28 16:27:29,845 PID:1677804 INFO - tokenization_utils.py [line:335]: Didn't find file /app_name/nlp/yanyi/laiwu_tobacco/laiwu_tobacco_xunjia/models/bert-base_span_莱芜烟草询价+_v2/added_tokens.json. We won't load it.
+2022-12-28 16:27:29,847 PID:1677804 INFO - tokenization_utils.py [line:335]: Didn't find file /app_name/nlp/yanyi/laiwu_tobacco/laiwu_tobacco_xunjia/models/bert-base_span_莱芜烟草询价+_v2/special_tokens_map.json. We won't load it.
+2022-12-28 16:27:29,849 PID:1677804 INFO - tokenization_utils.py [line:335]: Didn't find file /app_name/nlp/yanyi/laiwu_tobacco/laiwu_tobacco_xunjia/models/bert-base_span_莱芜烟草询价+_v2/tokenizer_config.json. We won't load it.
+2022-12-28 16:27:29,883 PID:1677804 INFO - tokenization_utils.py [line:371]: loading file /app_name/nlp/yanyi/laiwu_tobacco/laiwu_tobacco_xunjia/models/bert-base_span_莱芜烟草询价+_v2/vocab.txt
+2022-12-28 16:27:29,885 PID:1677804 INFO - tokenization_utils.py [line:371]: loading file None
+2022-12-28 16:27:29,925 PID:1677804 INFO - tokenization_utils.py [line:371]: loading file None
+2022-12-28 16:27:29,928 PID:1677804 INFO - tokenization_utils.py [line:371]: loading file None
+2022-12-28 16:27:30,022 PID:1677804 INFO - modeling_utils.py [line:350]: loading weights file /app_name/nlp/yanyi/laiwu_tobacco/laiwu_tobacco_xunjia/models/bert-base_span_莱芜烟草询价+_v2/pytorch_model.bin
+200000
+ * Serving Flask app 'app' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+2022-12-28 16:27:42,728 PID:1677804 WARNING - _internal.py [line:225]:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+2022-12-28 16:27:42,732 PID:1677804 INFO - _internal.py [line:225]:  * Running on http://10.1.0.247:16224/ (Press CTRL+C to quit)
+2022-12-28 16:32:30,937 PID:1677804 INFO - nlp.py [line:58]: ****************************************
+2022-12-28 16:32:30,942 PID:1677804 INFO - nlp.py [line:59]: json_data
+2022-12-28 16:32:30,945 PID:1677804 INFO - nlp.py [line:60]: 附件1中国烟草CHINATOBACCO莱
+2022-12-28 16:32:30,948 PID:1677804 INFO - nlp.py [line:61]: ****************************************
+Traceback (most recent call last):
+  File "/app_name/nlp/yanyi/laiwu_tobacco/laiwu_tobacco_xunjia/app/nlp.py", line 81, in tender_review
+    review_results = get_review_result(json_data)
+  File "/app_name/nlp/yanyi/laiwu_tobacco/laiwu_tobacco_xunjia/app/nlp.py", line 71, in get_review_result
+    review_results = model.labels_inference(text, lines_info_data, all_item, id)
+  File "/app_name/nlp/yanyi/laiwu_tobacco/laiwu_tobacco_xunjia/utils/time_cost.py", line 19, in function_timer
+    result = function(*args, **kwargs)
+  File "/app_name/nlp/yanyi/laiwu_tobacco/laiwu_tobacco_xunjia/controller/extraction.py", line 198, in labels_inference
+    file_name = bert_predict({"text": [page_text[page][0]]})
+NameError: name 'bert_predict' is not defined
+2022-12-28 16:32:59,352 PID:1677804 INFO - nlp.py [line:86]: None
+2022-12-28 16:32:59,365 PID:1677804 INFO - _internal.py [line:225]: 10.4.2.111 - - [28/Dec/2022 16:32:59] "POST /laiwu_tobatoo_xunjia HTTP/1.1" 200 -
+2022-12-28 16:34:55,265 PID:1677804 INFO - nlp.py [line:58]: ****************************************
+2022-12-28 16:34:55,269 PID:1677804 INFO - nlp.py [line:59]: json_data
+2022-12-28 16:34:55,272 PID:1677804 INFO - nlp.py [line:60]: 中国烟草CHINATOBACCO莱芜烟草
+2022-12-28 16:34:55,274 PID:1677804 INFO - nlp.py [line:61]: ****************************************
+Traceback (most recent call last):
+  File "/app_name/nlp/yanyi/laiwu_tobacco/laiwu_tobacco_xunjia/app/nlp.py", line 81, in tender_review
+    review_results = get_review_result(json_data)
+  File "/app_name/nlp/yanyi/laiwu_tobacco/laiwu_tobacco_xunjia/app/nlp.py", line 71, in get_review_result
+    review_results = model.labels_inference(text, lines_info_data, all_item, id)
+  File "/app_name/nlp/yanyi/laiwu_tobacco/laiwu_tobacco_xunjia/utils/time_cost.py", line 19, in function_timer
+    result = function(*args, **kwargs)
+  File "/app_name/nlp/yanyi/laiwu_tobacco/laiwu_tobacco_xunjia/controller/extraction.py", line 198, in labels_inference
+    file_name = bert_predict({"text": [page_text[page][0]]})
+NameError: name 'bert_predict' is not defined
+2022-12-28 16:35:54,036 PID:1677804 INFO - nlp.py [line:86]: None
+2022-12-28 16:35:54,049 PID:1677804 INFO - _internal.py [line:225]: 10.4.2.111 - - [28/Dec/2022 16:35:54] "POST /laiwu_tobatoo_xunjia HTTP/1.1" 200 -
+2022-12-28 16:36:19,821 PID:1677804 INFO - nlp.py [line:58]: ****************************************
+2022-12-28 16:36:19,825 PID:1677804 INFO - nlp.py [line:59]: json_data
+2022-12-28 16:36:19,827 PID:1677804 INFO - nlp.py [line:60]: 中国烟草CHINATOBACCO莱芜市烟
+2022-12-28 16:36:19,830 PID:1677804 INFO - nlp.py [line:61]: ****************************************
+Traceback (most recent call last):
+  File "/app_name/nlp/yanyi/laiwu_tobacco/laiwu_tobacco_xunjia/app/nlp.py", line 81, in tender_review
+    review_results = get_review_result(json_data)
+  File "/app_name/nlp/yanyi/laiwu_tobacco/laiwu_tobacco_xunjia/app/nlp.py", line 71, in get_review_result
+    review_results = model.labels_inference(text, lines_info_data, all_item, id)
+  File "/app_name/nlp/yanyi/laiwu_tobacco/laiwu_tobacco_xunjia/utils/time_cost.py", line 19, in function_timer
+    result = function(*args, **kwargs)
+  File "/app_name/nlp/yanyi/laiwu_tobacco/laiwu_tobacco_xunjia/controller/extraction.py", line 198, in labels_inference
+    file_name = bert_predict({"text": [page_text[page][0]]})
+NameError: name 'bert_predict' is not defined
+2022-12-28 16:36:32,441 PID:1677804 INFO - nlp.py [line:86]: None
+2022-12-28 16:36:32,453 PID:1677804 INFO - _internal.py [line:225]: 10.4.2.111 - - [28/Dec/2022 16:36:32] "POST /laiwu_tobatoo_xunjia HTTP/1.1" 200 -
+2022-12-28 16:48:42,616 PID:1716781 INFO - file_utils.py [line:32]: TensorFlow version 2.6.0 available.
+2022-12-28 16:48:42,620 PID:1716781 INFO - file_utils.py [line:39]: PyTorch version 1.11.0+cu102 available.
+2022-12-28 16:48:43,746 PID:1716781 INFO - utils.py [line:126]: Note: detected 80 virtual cores but NumExpr set to maximum of 64, check "NUMEXPR_MAX_THREADS" environment variable.
+2022-12-28 16:48:43,749 PID:1716781 INFO - utils.py [line:129]: Note: NumExpr detected 80 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+2022-12-28 16:48:43,752 PID:1716781 INFO - utils.py [line:141]: NumExpr defaulting to 8 threads.
+Traceback (most recent call last):
+  File "setup_app.py", line 15, in <module>
+    from app import create_app
+  File "/app_name/nlp/yanyi/laiwu_tobacco/laiwu_tobacco_xunjia/app/__init__.py", line 10, in <module>
+    from app.nlp import nlp_bp
+  File "/app_name/nlp/yanyi/laiwu_tobacco/laiwu_tobacco_xunjia/app/nlp.py", line 23, in <module>
+    from controller.extraction import ModelInference
+  File "/app_name/nlp/yanyi/laiwu_tobacco/laiwu_tobacco_xunjia/controller/extraction.py", line 11, in <module>
+    from controller.inference import bert_predict
+  File "/app_name/nlp/yanyi/laiwu_tobacco/laiwu_tobacco_xunjia/controller/inference.py", line 2684, in <module>
+    cfg = OmegaConf.load(os.path.join(os.path.dirname(__file__), 'config.yaml'))
+  File "/opt/anaconda3/envs/yanyi/lib/python3.7/site-packages/omegaconf/omegaconf.py", line 183, in load
+    with io.open(os.path.abspath(file_), "r", encoding="utf-8") as f:
+FileNotFoundError: [Errno 2] No such file or directory: '/app_name/nlp/yanyi/laiwu_tobacco/laiwu_tobacco_xunjia/controller/config.yaml'
+2022-12-28 16:50:10,993 PID:1719149 INFO - file_utils.py [line:32]: TensorFlow version 2.6.0 available.
+2022-12-28 16:50:10,997 PID:1719149 INFO - file_utils.py [line:39]: PyTorch version 1.11.0+cu102 available.
+2022-12-28 16:50:11,770 PID:1719149 INFO - utils.py [line:126]: Note: detected 80 virtual cores but NumExpr set to maximum of 64, check "NUMEXPR_MAX_THREADS" environment variable.
+2022-12-28 16:50:11,773 PID:1719149 INFO - utils.py [line:129]: Note: NumExpr detected 80 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+2022-12-28 16:50:11,792 PID:1719149 INFO - utils.py [line:141]: NumExpr defaulting to 8 threads.
+Traceback (most recent call last):
+  File "setup_app.py", line 15, in <module>
+    from app import create_app
+  File "/app_name/nlp/yanyi/laiwu_tobacco/laiwu_tobacco_xunjia/app/__init__.py", line 10, in <module>
+    from app.nlp import nlp_bp
+  File "/app_name/nlp/yanyi/laiwu_tobacco/laiwu_tobacco_xunjia/app/nlp.py", line 23, in <module>
+    from controller.extraction import ModelInference
+  File "/app_name/nlp/yanyi/laiwu_tobacco/laiwu_tobacco_xunjia/controller/extraction.py", line 11, in <module>
+    from controller.inference import bert_predict
+  File "/app_name/nlp/yanyi/laiwu_tobacco/laiwu_tobacco_xunjia/controller/inference.py", line 2684, in <module>
+    cfg = OmegaConf.load(os.path.join(os.path.dirname(__file__), 'config.yaml'))
+  File "/opt/anaconda3/envs/yanyi/lib/python3.7/site-packages/omegaconf/omegaconf.py", line 183, in load
+    with io.open(os.path.abspath(file_), "r", encoding="utf-8") as f:
+FileNotFoundError: [Errno 2] No such file or directory: '/app_name/nlp/yanyi/laiwu_tobacco/laiwu_tobacco_xunjia/controller/config.yaml'

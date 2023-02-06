@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interface</title>
+    <link rel="icon" href="data:;base64,=">
+    <link rel="stylesheet" href="/static/css/jquery.json-viewer.css" type="text/css">
+    <style type="text/css">
+        /* h2 蓝色 */
+        h2 {
+            color: #2d8cf0;
+            padding-inline-start: 10px;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        .windows {
+            width: 650px;
+        }
+
+        /* 所有class为nlp的元素居中 */
+        .nlp {
+            text-align: center;
+        }
+
+        /* 输入框设置 */
+        #input_url {
+            width: 400px;
+            height: 30px;
+        }
+
+        /* 输入框左边查询框设置 */
+        .select {
+            background-color: #2d8cf0;
+            color: #fff;
+            text-align: center;
+            display: inline-block;
+            width: 70px;
+            height: 30px;
+            line-height: 30px;
+            cursor: pointer;
+        }
+
+        /* 输入框右边查询框设置 */
+        .button_request {
+            background-color: #2d8cf0;
+            color: #fff;
+            text-align: center;
+            display: inline-block;
+            width: 80px;
+            height: 30px;
+            line-height: 30px;
+            cursor: pointer;
+        }
+
+        #request {
+            text-align: left;
+        }
+
+        #example {
+            text-align: left;
+        }
+
+        #response_text_pre {
+            text-align: left;
+            border: 2px solid #aaa;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        #select_type {
+            text-align: left;
+            width: 60px;
+            height: 25px;
+        }
+
+        #file_path {
+            width: 140px;
+        }
+
+        #response {
+            text-align: left;
+        }
+
+        #request_text {
+            width: 650px;
+        }
+
+        #show_time {
+            text-align: right;
+        }
+    </style>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/jquery.json-viewer.js"></script>
+</head>
+
+<body>
+<div class="windows">
+    <div class="nlp" id="show_header">
+        <h2>接口</h2>
+        <h3>通过简单的接口请求机制，实现快速的请求响应<br/>方便快捷地获取项目运行的接口状态和响应数据</h3>
+        <select class="select" id="select_method" onchange="selectmethod()">
+            <option style="display: none">method</option>
+            <option>GET</option>
+            <option>POST</option>
+        </select>
+        <select class="select" id="select_url" onchange="selecttext()">
+            <option style="display: none">url</option>
+            {% for url in urls %}
+            <option>{{ url }}</option>
+            {% endfor%}
+        </select>
+        <input id="input_url" type="text" onkeydown="if(event.keyCode==13){btn.click()}" placeholder="请输入您要请求的URL...">
+        <button class="button_request" id="btn" onclick="query()">查询</button>
+    </div>
+
+    <div class="nlp" id="error" style="display: none"></div>
+
+    <div class="nlp" id="show_body" style="display: none">
+        <h3 id="request"></h3>
+        <div>
+            <p id="example">
+                <button onclick="example()">样例</button>
+                <label>
+                    <textarea id="example_all" cols="80" rows="10" style="display: none">{{ example }}</textarea>
+                    <textarea id="example_text" cols="80" rows="10" style="display: none"></textarea>
+                </label>
+                <label>
+                    <select id="select_type" onchange="selecttype()">
+                        <option>JSON</option>
+                        <option>FILE</option>
+                    </select>
+                </label>
+                <label>
+                    <input id="file_path" type="file" style="display: none" >
+                </label>
+            </p>
+        </div>
+
+        <div class="request_body" id="request_body" style="display: block">
+            <form name="request_form" method="POST">
+                <label>
+                    <textarea id="request_text" cols="80" rows="10"></textarea>
+                </label>
+            </form>
+        </div>
+    </div>
+
+    <div class="nlp" id="show_response" style="display: none">
+        <h3 id="response"></h3>
+        <div class="response_data" id="response_data">
+            <label>
+                <pre id="response_text_pre"></pre>
+<!--                <textarea id="response_text" cols="80" rows="10">-->
+                </textarea>
+            </label>
+        </div>
+    </div>
+
+    <div class="nlp" id="show_time" style="display: none"></div>
+</div>
+</body>
+
+<script type="text/javascript">
+    function query() {
+        document.getElementById("error").style.display = 'none'
+        var sendDate = (new Date()).getTime();
+        console.log(sendDate)
+
+        var url = document.getElementById("input_url").value.trim()
+        console.log(url)
+        var select_method = document.getElementById("select_method")
+        var index = select_method.selectedIndex
+        var method = select_method.options[index].text
+        console.log(method)
+        var select_type = document.getElementById("select_type")
+        var select_type_index = select_type.selectedIndex
+        var type = select_type.options[select_type_index].text
+        console.log(type)
+
+
+        if (url) {
+            if (method === "POST" && type === "JSON") {
+                var request_context = document.getElementById("request_text").value
+                // request_context POST请求参数可能为空
+                console.log(request_context)
+                console.log(typeof (request_context))
+
+                $.ajax({
+                    method: method,
+                    url: url,
+                    // 传递参数类型，转换为json格式
+                    data: request_context,
+                    // 预期接收响应的参数类型
+                    dataType: "json",
+                    // 发送请求数据类型
+                    contentType: "application/json;charset=UTF-8",
+                    success(res) {
+                        document.getElementById("response").innerHTML = '请求结果:'
+                        document.getElementById("show_response").style.display = 'block'
+                        $('#response_text_pre').jsonViewer(res)
+
+                        var receiveDate = (new Date()).getTime();
+                        var responseTimeMs = receiveDate - sendDate;
+                        document.getElementById("show_time").innerHTML = "<p> 200 ok  " + responseTimeMs + "ms" + "</p>"
+                        document.getElementById("show_time").style.display = 'block'
+                    },
+                    error: function (e) {
+                        document.getElementById("show_body").style.display = 'none'
+                        document.getElementById("show_response").style.display = 'none'
+                        document.getElementById("show_time").style.display = 'none'
+                        document.getElementById("error").innerHTML = "<p>请求有误，请重试</p>"
+                        document.getElementById("error").style.display = 'block'
+                        console.log(e);
+                    }
+                })
+            } else if (method === "POST" && type === "FILE"){
+                var formData = new FormData();
+                var file_obj = $('#file_path')[0].files[0]
+                console.log(file_obj)
+                formData.append("file", file_obj)
+                console.log(formData.get("file"))
+
+                $.ajax({
+                    method: method,
+                    url: url,
+                    data: formData,
+                    async: false,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success(res) {
+                        document.getElementById("response").innerHTML = '请求结果:'
+                        document.getElementById("show_response").style.display = 'block'
+                        $('#response_text_pre').jsonViewer(res)
+                        var receiveDate = (new Date()).getTime();
+                        var responseTimeMs = receiveDate - sendDate;
+                        document.getElementById("show_time").innerHTML = "<p> 200 ok  " + responseTimeMs + "ms" + "</p>"
+                        document.getElementById("show_time").style.display = 'block'
+                    },
+                    error: function (e) {
+                        document.getElementById("show_body").style.display = 'none'
+                        document.getElementById("show_response").style.display = 'none'
+                        document.getElementById("show_time").style.display = 'none'
+                        document.getElementById("error").innerHTML = "<p>请求有误，请重试</p>"
+                        document.getElementById("error").style.display = 'block'
+                        console.log(e);
+                    }
+                })
+            } else if (method === "GET") {
+                $.ajax({
+                    method: method,
+                    url: url,
+                    dataType: "text",
+                    contentType: "application/json;charset=UTF-8",
+                    success(res) {
+                        document.getElementById("response").innerHTML = '请求结果:'
+                        document.getElementById("show_response").style.display = 'block'
+                        $('#response_text_pre').jsonViewer(res)
+                        var receiveDate = (new Date()).getTime();
+                        console.log(receiveDate)
+                        var responseTimeMs = receiveDate - sendDate;
+                        console.log(responseTimeMs)
+                        document.getElementById("show_time").innerHTML = "<p> 200 ok  " + responseTimeMs + "ms" + "</p>"
+                        document.getElementById("show_time").style.display = 'block'
+                    },
+                    error: function (e) {
+                        document.getElementById("show_body").style.display = 'none'
+                        document.getElementById("show_response").style.display = 'none'
+                        document.getElementById("show_time").style.display = 'none'
+                        document.getElementById("error").innerHTML = "<p>请求有误，请重试</p>"
+                        document.getElementById("error").style.display = 'block'
+                        console.log(e);
+                    }
+                })
+            }
+        } else {
+            document.getElementById("show_body").style.display = 'none'
+            document.getElementById("show_response").style.display = 'none'
+            document.getElementById("show_time").style.display = 'none'
+            document.getElementById("error").innerHTML = "<p>未识别到URL，请重新输入</p>"
+            document.getElementById("error").style.display = 'block'
+        }
+    }
+
+    function selectmethod(e) {
+        var method = document.getElementById("select_method")
+        var index = method.selectedIndex
+        if (method.options[index].text === "POST") {
+            document.getElementById("error").style.display = 'none'
+            document.getElementById("show_response").style.display = 'none'
+            document.getElementById("show_time").style.display = 'none'
+            document.getElementById("request_text").innerText = ""
+            document.getElementById("request").innerHTML = '请输入参数:'
+            document.getElementById("show_body").style.display = 'block'
+
+        } else if (method.options[index].text === "GET") {
+            document.getElementById("show_body").style.display = 'none'
+            document.getElementById("error").style.display = 'none'
+            document.getElementById("show_response").style.display = 'none'
+            document.getElementById("show_time").style.display = 'none'
+        }
+    }
+
+    function selecttext(e) {
+        var url = document.getElementById("select_url")
+        var index = url.selectedIndex
+        document.getElementById("input_url").value = url.options[index].text
+        url.selectedIndex = 0
+
+        document.getElementById("request_text").value = ""
+        var examples = document.getElementById("example_all").innerText
+        console.log(examples)
+        var example = JSON.parse(examples)[url.options[index].text]
+        console.log(example)
+        document.getElementById("example_text").innerText = JSON.stringify(example)
+
+        document.getElementById("error").style.display = 'none'
+        document.getElementById("show_response").style.display = 'none'
+        document.getElementById("show_time").style.display = 'none'
+        var method = document.getElementById("select_method")
+        var method_index = method.selectedIndex
+        if (method.options[method_index].text === "POST") {
+            document.getElementById("request").innerHTML = '请输入参数:'
+            document.getElementById("show_body").style.display = 'block'
+            document.getElementById("request_text").innerText = ""
+        }
+    }
+
+    function selecttype(e) {
+        var type = document.getElementById("select_type")
+        var index = type.selectedIndex
+        var select_type = type.options[index].text
+        console.log(select_type)
+        if (select_type === "FILE") {
+            document.getElementById("error").style.display = 'none'
+            document.getElementById("request_body").style.display = 'none'
+            document.getElementById("show_response").style.display = 'none'
+            document.getElementById("show_time").style.display = 'none'
+            document.getElementById("file_path").style.display = 'inline-block'
+        } else if (select_type === "JSON"){
+            document.getElementById("request_text").innerText = ""
+            document.getElementById("error").style.display = 'none'
+            document.getElementById("show_response").style.display = 'none'
+            document.getElementById("show_time").style.display = 'none'
+            document.getElementById("file_path").style.visibility = 'none'
+            document.getElementById("request_body").style.display = 'block'
+        }
+    }
+
+    function example(e) {
+        var example_text = document.getElementById("example_text").innerText
+        console.log(example_text)
+        document.getElementById("request_text").value = example_text
+    }
+</script>
+</html>
